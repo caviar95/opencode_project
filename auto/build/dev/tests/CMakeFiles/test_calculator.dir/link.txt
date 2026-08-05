@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -fsanitize=address,undefined CMakeFiles/test_calculator.dir/test_calculator.cpp.o -o test_calculator  ../libauto_core.a

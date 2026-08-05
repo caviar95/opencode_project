@@ -1,0 +1,3 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/threads/cancel/build/CMakeFiles/demo.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/threads/cancel/build/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/threads/cancel/build/CMakeFiles/rebuild_cache.dir

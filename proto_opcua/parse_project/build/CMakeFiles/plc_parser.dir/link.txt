@@ -1,0 +1,2 @@
+/usr/bin/ar qc libplc_parser.a CMakeFiles/plc_parser.dir/struct_parser.cpp.o CMakeFiles/plc_parser.dir/node_cache.cpp.o CMakeFiles/plc_parser.dir/plc_poller.cpp.o CMakeFiles/plc_parser.dir/plc_client.cpp.o
+/usr/bin/ranlib libplc_parser.a

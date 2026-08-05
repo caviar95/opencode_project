@@ -1,0 +1,2 @@
+/usr/bin/ar qc libauto_core.a CMakeFiles/auto_core.dir/src/calculator.cpp.o
+/usr/bin/ranlib libauto_core.a

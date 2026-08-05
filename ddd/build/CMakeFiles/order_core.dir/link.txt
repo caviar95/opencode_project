@@ -1,0 +1,2 @@
+/usr/bin/ar qc liborder_core.a CMakeFiles/order_core.dir/src/domain/money.cpp.o CMakeFiles/order_core.dir/src/application/order_application_service.cpp.o
+/usr/bin/ranlib liborder_core.a

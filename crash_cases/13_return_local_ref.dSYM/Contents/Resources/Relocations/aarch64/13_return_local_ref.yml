@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     13_return_local_ref
+relocations:     []
+...

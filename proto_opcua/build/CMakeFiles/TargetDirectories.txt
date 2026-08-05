@@ -1,0 +1,4 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/build/CMakeFiles/opcua_client.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/build/CMakeFiles/scenarios.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/build/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/build/CMakeFiles/rebuild_cache.dir

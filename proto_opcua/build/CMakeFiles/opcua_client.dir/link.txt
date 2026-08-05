@@ -1,0 +1,2 @@
+/usr/bin/ar qc libopcua_client.a CMakeFiles/opcua_client.dir/opcua_client.cpp.o CMakeFiles/opcua_client.dir/opcua.pb.cc.o
+/usr/bin/ranlib libopcua_client.a

@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     12_pure_virtual_call
+relocations:     []
+...

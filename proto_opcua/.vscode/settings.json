@@ -1,0 +1,50 @@
+{
+    // ---------- 编辑器 ----------
+    "editor.fontSize": 15,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "off",
+    "editor.renderWhitespace": "selection",
+    "editor.minimap.enabled": false,
+    // ---------- 文件 ----------
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    // ---------- CMake ----------
+    "cmake.configureOnOpen": true,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    // ---------- C/C++ ----------
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c17",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.default.intelliSenseMode": "lmacos-clang-arm64",
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=detailed",
+        "--header-insertion=iwyu",
+        "--pch-storage=memory"
+    ],
+    // ---------- clang-format ----------
+    "C_Cpp.clang_format_style": "file",
+    // ---------- 自动补全 ----------
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestSelection": "first",
+    // ---------- 调试 ----------
+    "debug.console.closeOnEnd": false,
+    // ---------- 终端 ----------
+    "terminal.integrated.defaultProfile.linux": "bash",
+    // ---------- 文件关联 ----------
+    "files.associations": {
+        "*.tpp": "cpp",
+        "*.ipp": "cpp",
+        "*.inl": "cpp"
+    }
+}

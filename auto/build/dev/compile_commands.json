@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev",
+  "command": "/usr/bin/c++  -I/Volumes/ExtDisk/code/cpp/project/opencodes/auto/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/auto_core.dir/src/calculator.cpp.o -c /Volumes/ExtDisk/code/cpp/project/opencodes/auto/src/calculator.cpp",
+  "file": "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/src/calculator.cpp",
+  "output": "CMakeFiles/auto_core.dir/src/calculator.cpp.o"
+},
+{
+  "directory": "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev",
+  "command": "/usr/bin/c++  -I/Volumes/ExtDisk/code/cpp/project/opencodes/auto/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/auto_demo.dir/src/main.cpp.o -c /Volumes/ExtDisk/code/cpp/project/opencodes/auto/src/main.cpp",
+  "file": "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/src/main.cpp",
+  "output": "CMakeFiles/auto_demo.dir/src/main.cpp.o"
+},
+{
+  "directory": "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests",
+  "command": "/usr/bin/c++  -I/Volumes/ExtDisk/code/cpp/project/opencodes/auto/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/test_calculator.dir/test_calculator.cpp.o -c /Volumes/ExtDisk/code/cpp/project/opencodes/auto/tests/test_calculator.cpp",
+  "file": "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/tests/test_calculator.cpp",
+  "output": "tests/CMakeFiles/test_calculator.dir/test_calculator.cpp.o"
+}
+]

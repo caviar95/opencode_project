@@ -1,0 +1,2 @@
+/usr/bin/ar qc libopcua_proto.a CMakeFiles/opcua_proto.dir/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/build/opcua.pb.cc.o
+/usr/bin/ranlib libopcua_proto.a

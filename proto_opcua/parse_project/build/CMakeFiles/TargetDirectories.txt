@@ -1,0 +1,5 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/parse_project/build/CMakeFiles/opcua_proto.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/parse_project/build/CMakeFiles/plc_parser.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/parse_project/build/CMakeFiles/plc_demo.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/parse_project/build/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/proto_opcua/parse_project/build/CMakeFiles/rebuild_cache.dir

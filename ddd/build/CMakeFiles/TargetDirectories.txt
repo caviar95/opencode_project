@@ -1,0 +1,6 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/CMakeFiles/order_core.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/CMakeFiles/order_demo.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/CMakeFiles/order_domain_test.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/CMakeFiles/test.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/CMakeFiles/rebuild_cache.dir

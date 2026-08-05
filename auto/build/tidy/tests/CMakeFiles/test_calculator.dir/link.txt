@@ -1,0 +1,1 @@
+/usr/bin/c++ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -O3 -DNDEBUG -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/test_calculator.dir/test_calculator.cpp.o -o test_calculator  ../libauto_core.a

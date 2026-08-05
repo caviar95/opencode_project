@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/cmake_install.cmake",
+		"/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

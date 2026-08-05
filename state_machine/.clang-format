@@ -1,0 +1,16 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Empty
+BinPackParameters: false
+AlignAfterOpenBracket: Align
+Standard: c++17
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterStruct: true
+  AfterFunction: true
+  AfterControlStatement: MultiLine
+  BeforeElse: true
+NamespaceIndentation: All
+PointerAlignment: Left

@@ -1,0 +1,72 @@
+# 编码设计（Coding / Architectural Design）
+
+## 1. 分层与面向端口架构（Hexagonal + DDD 四层）
+
+```
+ infrastructure/  接入层(IO/Framework)
+    · PlcGatewayAdapter、Repositories、事件总线实现
+          ▲ (依赖倒置：实现 Port)
+ application/  应用服务：编排用例，事务/命令协调
+    · 产线/模块 CommandService、DTO
+          ▼ (调用领域)
+ domain/  领域层：聚合、实体、值对象、域服务、事件 —— 无框架依赖
+```
+
+规则：**领域层（domain）不依赖任何上层/框架**；`application` 依赖 `domain`；
+`infrastructure` 实现 `domain/application` 定义的 **端口（Port / 抽象接口）**；
+主程序(上位机/`Host`) 仅组装依赖并调用应用服务。
+
+## 2. 核心领域构件
+
+### 2.1 模块聚合根 `DeviceModule`
+- **角色**：执行型(OPERATOR) 与 传感型(SENSOR) 并存的聚合根；可嵌套子模块（Composite）。
+- 字段：`ModuleId`、名称、`ModuleType`、状态机、子模块集合、目标 `plcId`、传感引用。
+- 方法（状态转换行为，即上层驱动的命令）：
+  `powerOn/preheat/preheatDone/startWork/finishWork/setFault/reset/refreshSensor`。
+- 每个迁移走 `DeviceStateRule`（迁移合法集 + Guard 判定）→ 非法返回错误。
+
+### 2.2 值对象/枚举
+- `ModuleType { OPERATOR, SENSOR }`
+- `ModuleState { INACTIVE, PREHEATING, READY, WORKING, COMPLETED, FAULT }`
+- `SensorState { NORMAL, TRIGGERED, OUT_OF_RANGE }`
+
+### 2.3 领域服务 `LineController（= 产线工序）`
+- `ProductionLine`（聚合根，Level-0）：维护产线 `LineState`，按顺序对执行型模块下发预热→就绪→运行，并在每组动作后校验。
+
+### 2.4 端口（Primary 出站端口，领域层定义）
+- `IPlc`（抽象）：`sendOpen/start/stop/readRegister` → 底层 PLC/嵌入式平台，实现放 `infrastructure/plc`。
+- `IAlarmSink`（可选）：报警事件出口。
+
+## 3. 依赖注入与组装（Composition Root）
+`main.cpp` 为组合根：构造 `PlcSimulator`（infrastructure）→ 构造 `DeviceModule`（注入 IPlc）→ 组装 `ProductionLine` → 暴露 `LineCommandService`（application）给上位机调用。事件总线（若启用）订阅 `ModuleStateChanged/Alarm`。
+
+## 4. 目录结构
+```
+ddd_multi_device/
+├─ CMakeLists.txt
+├─ docs/01-requirement, 02-coding-design
+├─ src/
+│  ├─ ddd/
+│  │  ├─ domain/                        # 领域层（无框架依赖）
+│  │  │  ├─ core/   id.hpp, result.hpp
+│  │  │  ├─ port/   iplc.hpp, ipublisher.hpp
+│  │  │  ├─ module/ device_module.{hpp,cpp}      # 聚合根+状态机(Composite)
+│  │  │  └─ process/production_line.{hpp,cpp}    # 产线工序聚合根
+│  │  ├─ application/ line_command.{hpp,cpp}, module_command.hpp
+│  │  └─ infrastructure/
+│  │     ├─ plc/      plc_sim.{hpp,cpp}          # IPlc 适配器
+│  │     └─ messaging/ event_bus.hpp             # IPublisher 适配器
+│  └─ main.cpp            # 组合根：上位机调用演示
+```
+
+## 5. 关键设计决策
+1. **状态=可工作性**：用 `!isFault && state==READY` 表达可运行；组合模块就绪须递归子模块。
+2. **指令即迁移**：状态转换行为 = 命令；命令校验合法迁移再执行，契合“上层通过状态转换行为驱动下层动作顺序”。
+3. **传感映射**：`SENSOR` 模块仅 `refreshSensor()` 更新状态，供 `OPERATOR` Guard 使用。
+4. **测试友好**：`IPlc` 可替换，领域逻辑与 IO 完全解耦。
+
+## 6. 编译与运行
+```bash
+cmake -S . -B build && cmake --build build
+./build/device_ddd           # 演示：预热→就绪→运行→完成，含故障防护
+```

@@ -1,0 +1,17 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/auto_core.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/auto_demo.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/test.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/rebuild_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/list_install_components.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/install.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/install/local.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/CMakeFiles/install/strip.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/test_calculator.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/test.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/rebuild_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/list_install_components.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/install.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/install/local.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/CMakeFiles/install/strip.dir

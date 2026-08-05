@@ -1,0 +1,17 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/auto_core.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/auto_demo.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/test.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/rebuild_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/list_install_components.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/install.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/install/local.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/CMakeFiles/install/strip.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/test_calculator.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/test.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/rebuild_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/list_install_components.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/install.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/install/local.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/tidy/tests/CMakeFiles/install/strip.dir

@@ -1,0 +1,14 @@
+add_executable(ex_traffic_light 01_traffic_light.cpp)
+target_link_libraries(ex_traffic_light hfsm)
+
+add_executable(ex_tcp_connection 02_tcp_connection.cpp)
+target_link_libraries(ex_tcp_connection hfsm)
+
+add_executable(ex_order_processor 03_order_processor.cpp)
+target_link_libraries(ex_order_processor hfsm)
+
+add_executable(ex_protocol_stack 04_protocol_stack.cpp)
+target_link_libraries(ex_protocol_stack hfsm)
+
+add_executable(ex_device_manager 05_device_manager.cpp)
+target_link_libraries(ex_device_manager hfsm)

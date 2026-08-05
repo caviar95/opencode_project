@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/state_machine_2.dir/main.cpp.o CMakeFiles/state_machine_2.dir/examples/device_control.cpp.o -o state_machine_2

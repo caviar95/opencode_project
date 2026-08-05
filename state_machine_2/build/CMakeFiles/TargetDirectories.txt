@@ -1,0 +1,3 @@
+/Volumes/ExtDisk/code/cpp/project/opencodes/state_machine_2/build/CMakeFiles/state_machine_2.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/state_machine_2/build/CMakeFiles/edit_cache.dir
+/Volumes/ExtDisk/code/cpp/project/opencodes/state_machine_2/build/CMakeFiles/rebuild_cache.dir

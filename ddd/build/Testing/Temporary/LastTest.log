@@ -1,0 +1,20 @@
+Start testing: Aug 02 17:28 CST
+----------------------------------------------------------
+1/1 Testing: order_domain_test
+1/1 Test: order_domain_test
+Command: "/Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build/order_domain_test"
+Directory: /Volumes/ExtDisk/code/cpp/project/opencodes/ddd/build
+"order_domain_test" start time: Aug 02 17:28 CST
+Output:
+----------------------------------------------------------
+
+48/48 checks passed.
+<end of output>
+Test time =   0.41 sec
+----------------------------------------------------------
+Test Passed.
+"order_domain_test" end time: Aug 02 17:28 CST
+"order_domain_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 02 17:28 CST

@@ -1,0 +1,86 @@
+# 需求设计（Requirement Design）
+
+## 1. 项目概述（Bounded Context / 限界上下文）
+
+X 设备是类似生产线的大型装备，从其 **预热（PowerOn / Preheat）** 到 **实际工作（Run / Work）**，
+需要分级操控底层 **PLC 设备**。设备本体按物理与功能被拆分为**多个模块（DeviceModule）**，
+每个模块由**嵌入式 Linux 平台**控制其工作；模块按其职能再次拆分**子模块**；最终所有控制指令
+由**上位机（Host / SCADA）**下发。
+
+领域切分（限界上下文）：
+
+- **设备控制上下文（DeviceControl）**：核心域。模块聚合、模块状态机、产线工序编排、控制指令序列。
+- **传感映射上下文（SensorMapping）**：支撑域。把产线上的传感器信号映射为模块状态（只读反映，不做控制动作）。
+- **PLC/嵌入式接入上下文（EmbeddedIO）**：通用支撑域。抽象的 PLC/MCU 命令往返（Gate）。
+
+## 2. 领域语言（Ubiquitous Language / 术语表）
+
+| 术语 | 含义 |
+| --- | --- |
+| 设备模块 DeviceModule | 产线上可由一个嵌入式 Linux 平台独立控制的最小/组合控制单元 |
+| 子模块 SubModule | 模块内部按职能拆分出的下一级单元（嵌套结构） |
+| 模块类型 ModuleType | OPERATOR(执行型/受控) 或 SENSOR(传感型/映射状态) |
+| 模块状态 ModuleState | 模块当前所处状态，标识其是否可正常工作 |
+| 状态转换行为 StateCommand | 上层设备对下层设备下发的、触发状态迁移的指令动作 |
+| 前置条件 Guard | 状态迁移必须满足的约束（如所有子模块就绪） |
+| 产线工序 Production / 产线状态 LineState | 上位机视角的整体工序（预热→就绪→运行→完成） |
+| IPC 端口 Port | 面向底层 PLC/嵌入式平台的抽象接口（门端口/Primary Port） |
+| 域事件 Domain Event | 状态变化、故障、就绪等通知，用于解耦与扩展 |
+
+## 3. 核心用例（Use Cases / 应用服务）
+
+1. **上位机下发** `PowerOn`, `Preheat`, `StartWork`, `Stop`, `QueryStatus`（产线级应用服务）。
+2. **层级编排**：上位机对产线发指令 → 产线对执行型模块发状态转换命令 → 模块对其子模块逐级下发。
+3. **就绪/健康检查**：上报各模块状态，聚合为产线可用性（模块状态 = 是否可正常工作的依据）。
+4. **传感器映射**：传感型模块只读取 PLC 输入，实时映射为运行状态参与 Guard 判定，不接收控制指令。
+5. **故障处理**：任一模块故障置 `FAULT`，沉淀为产线不可运行并触发报警事件。
+
+## 4. 核心业务规则（Domain Invariants / 不变量）
+
+- 一个**复合模块**（含子模块）只能进入 `READY` 当且仅当所有子模块是否 `READY`（或与其对应的传感条件就绪）。
+- 只有 `READY` 的可控模块才能 `start()` 进入 `WORKING`。
+- 传感型模块的状态由**外部传感器输入决定并（不可由外部指令直接写）**。
+- 任何不可运行状态（`FAULT`）是不可被忽略的：模块不能带着 `FAULT` 进入 `WORKING`。
+- 状态迁移都是**非法迁移拒绝**：使用非法命令由上游返回失败。
+- 整体产线工序顺序：`INACTIVE → PREHEATING → READY → WORKING → COMPLETED`，故障任意态 → `FAULT`。
+
+## 5. 状态机（Domain State Machine）
+
+### 5.1 设备模块状态机（执行型 OPERATOR / 组合模块）
+说明——**状态=可正常性判定依据**。
+
+```
+                 PowerOn(动作)
+   INACTIVE ───────────────────► PREHEATING
+                                     │（所有子/条件就绪 → preheatDone）
+                                     ▼
+                                  READY ──► Start ──► WORKING ─► Finish ──► COMPLETED
+                                     │         ▲
+                     record/复位        └--- FAULT（任意运行态可迁入）
+```
+- 迁移表见 `DeviceModule` 实现；非法迁移返回 `Invalid`
+
+### 5.2 传感型模块状态机（映射）
+```
+   NORMAL ──待测到信号/丢失──► TRIGGERED / OUT_OF_RANGE   （由 SensorState 输入驱动）
+```
+- 只读，执行型模块的启动 Guard **依赖** 其传感状态。
+
+### 5.3 产线工序状态机（上位机视角）
+```
+INACTIVE ─► PREHEATING ─► READY ─► WORKING ─► COMPLETED
+                 │            │       │
+                 └──── FAUST ─┴───────┘
+```
+
+## 6. 领域事件（Domain Events）
+
+- `ModuleStateChanged{moduleId, from, to}`
+- `ModuleReady{moduleId}` — 就绪，可用于上层 Guard
+- `LineStateChanged{lineState}`
+- `Alarm{moduleId, message}` — 故障报警
+
+## 7. 角色 / 非功能约束
+
+- **角色**：上位机（发起指令）、嵌入式 Linux 平台驱动（执行控制）、运维（查看状态、复位）。
+- **非功能**：可测试（面向端口抽象、依赖注入）、可扩展（状态机可增、事件解耦扩展单位）、分层清晰（领域层不含任何框架/IO）。

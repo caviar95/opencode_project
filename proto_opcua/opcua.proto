@@ -1,0 +1,222 @@
+syntax = "proto3";
+
+package opcua;
+
+enum DataTypeId {
+    BOOL = 0;
+    INT8 = 1;
+    INT16 = 2;
+    INT32 = 3;
+    INT64 = 4;
+    UINT8 = 5;
+    UINT16 = 6;
+    UINT32 = 7;
+    UINT64 = 8;
+    FLOAT = 9;
+    DOUBLE = 10;
+    STRING = 11;
+    BYTESTRING = 12;
+    DATETIME = 13;
+    NODEID = 14;
+    VARIANT = 15;
+    ARRAY_BOOL = 16;
+    ARRAY_INT32 = 17;
+    ARRAY_FLOAT = 18;
+    ARRAY_DOUBLE = 19;
+    ARRAY_STRING = 20;
+    LOCALIZEDTEXT = 21;
+    QUALIFIEDNAME = 22;
+    STRUCTURED = 23;
+}
+
+message VariantValue {
+    DataTypeId type = 1;
+    oneof value {
+        bool bool_val = 2;
+        int32 int32_val = 3;
+        int64 int64_val = 4;
+        uint32 uint32_val = 5;
+        uint64 uint64_val = 6;
+        float float_val = 7;
+        double double_val = 8;
+        string string_val = 9;
+        bytes bytes_val = 10;
+        uint64 datetime_val = 11;
+    }
+    // support arrays
+    repeated bool bool_array = 20;
+    repeated int32 int32_array = 21;
+    repeated int64 int64_array = 22;
+    repeated uint32 uint32_array = 23;
+    repeated uint64 uint64_array = 24;
+    repeated float float_array = 25;
+    repeated double double_array = 26;
+    repeated string string_array = 27;
+}
+
+message NodeId {
+    uint32 namespace_index = 1;
+    oneof id {
+        uint32 numeric_id = 2;
+        string string_id = 3;
+        bytes guid_id = 4;
+        uint64 opaque_id = 5;
+    }
+}
+
+message QualifiedName {
+    uint32 namespace_index = 1;
+    string name = 2;
+}
+
+message ReadRequest {
+    NodeId node_id = 1;
+    // e.g. 13 (Value), 14 (DisplayName), etc.
+    uint32 attribute_id = 2;  // default = 13 (Value)
+    bool include_timestamp = 3;
+}
+
+message ReadResponse {
+    StatusCode status = 1;
+    VariantValue value = 2;
+    uint64 server_timestamp = 3;
+    uint64 source_timestamp = 4;
+}
+
+message WriteRequest {
+    NodeId node_id = 1;
+    VariantValue value = 2;
+    uint32 attribute_id = 3;
+}
+
+message WriteResponse {
+    StatusCode status = 1;
+}
+
+message BatchReadRequest {
+    repeated ReadRequest requests = 1;
+}
+
+message BatchReadResponse {
+    repeated ReadResponse responses = 1;
+}
+
+message BatchWriteRequest {
+    repeated WriteRequest requests = 1;
+}
+
+message BatchWriteResponse {
+    repeated WriteResponse responses = 1;
+}
+
+message BrowseRequest {
+    NodeId node_id = 1;
+    uint32 max_references = 2;
+    uint32 node_class_mask = 3;  // Object=1, Variable=2, Method=4, ObjectType=8, VariableType=16
+    bool recursive = 4;
+}
+
+message BrowseResponse {
+    StatusCode status = 1;
+    repeated ReferenceDescription references = 2;
+}
+
+message ReferenceDescription {
+    NodeId node_id = 1;
+    string browse_name = 2;
+    string display_name = 3;
+    uint32 node_class = 4;
+    QualifiedName type_definition = 5;
+}
+
+message SubscribeRequest {
+    NodeId node_id = 1;
+    double sampling_interval_ms = 2;
+    uint32 queue_size = 3;
+    bool discard_oldest = 4;
+}
+
+message SubscribeResponse {
+    StatusCode status = 1;
+    uint32 monitored_item_id = 2;
+    uint32 subscription_id = 3;
+}
+
+message UnsubscribeRequest {
+    uint32 subscription_id = 1;
+    uint32 monitored_item_id = 2;
+}
+
+message UnsubscribeResponse {
+    StatusCode status = 1;
+}
+
+message DataChangeNotification {
+    uint32 monitored_item_id = 1;
+    uint32 subscription_id = 2;
+    VariantValue value = 3;
+    uint64 server_timestamp = 4;
+    uint64 source_timestamp = 5;
+    StatusCode status = 6;
+}
+
+message CallMethodRequest {
+    NodeId object_id = 1;
+    NodeId method_id = 2;
+    repeated VariantValue input_args = 3;
+}
+
+message CallMethodResponse {
+    StatusCode status = 1;
+    repeated VariantValue output_args = 2;
+}
+
+message HistoryReadRequest {
+    NodeId node_id = 1;
+    uint64 start_time = 2;
+    uint64 end_time = 3;
+    uint32 max_values = 4;
+}
+
+message HistoryReadResponse {
+    StatusCode status = 1;
+    repeated VariantValue values = 2;
+    repeated uint64 timestamps = 3;
+}
+
+message StatusCode {
+    uint32 code = 1;
+    string symbolic_name = 2;
+    string description = 3;
+}
+
+message OPCUARequest {
+    uint32 request_id = 1;
+    oneof request {
+        ReadRequest read = 10;
+        WriteRequest write = 11;
+        BatchReadRequest batch_read = 12;
+        BatchWriteRequest batch_write = 13;
+        BrowseRequest browse = 14;
+        SubscribeRequest subscribe = 15;
+        UnsubscribeRequest unsubscribe = 16;
+        CallMethodRequest call_method = 17;
+        HistoryReadRequest history_read = 18;
+    }
+}
+
+message OPCUAResponse {
+    uint32 request_id = 1;
+    oneof response {
+        ReadResponse read = 10;
+        WriteResponse write = 11;
+        BatchReadResponse batch_read = 12;
+        BatchWriteResponse batch_write = 13;
+        BrowseResponse browse = 14;
+        SubscribeResponse subscribe = 15;
+        UnsubscribeResponse unsubscribe = 16;
+        CallMethodResponse call_method = 17;
+        HistoryReadResponse history_read = 18;
+        DataChangeNotification data_change = 19;
+    }
+}

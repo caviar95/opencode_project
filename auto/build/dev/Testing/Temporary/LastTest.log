@@ -1,0 +1,19 @@
+Start testing: Aug 04 00:58 CST
+----------------------------------------------------------
+1/1 Testing: test_calculator
+1/1 Test: test_calculator
+Command: "/Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests/test_calculator"
+Directory: /Volumes/ExtDisk/code/cpp/project/opencodes/auto/build/dev/tests
+"test_calculator" start time: Aug 04 00:58 CST
+Output:
+----------------------------------------------------------
+all tests passed
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"test_calculator" end time: Aug 04 00:58 CST
+"test_calculator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 04 00:58 CST
